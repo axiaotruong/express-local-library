@@ -10,14 +10,14 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var catalog = require('./routes/catalog'); //Import routes for "catalog" area of site
 var compression = require('compression');
-
+var helmet = require('helmet');
 var app = express();
 
 app.use(helmet());
 //var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 //var MongoClient = mongodb.MongoClient;
-var mongoDB = 'mongodb://admin:123456@ds149382.mlab.com:49382/local_library';
+var mongoDB = process.env.MONGODB_URI || 'mongodb://admin:123456@ds149382.mlab.com:49382/local_library';
 
 mongoose.connect(mongoDB);
 var db = mongoose.connection;
